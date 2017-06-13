@@ -4,6 +4,8 @@ package com.droid.ray.buscatecnico.activitys;
  * Created by Robson on 29/05/2017.
  */
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
@@ -52,6 +54,8 @@ public class TelaInicial extends AppCompatActivity {
     private FirebaseAuth mAuth;
     // [END declare_auth]
 
+    private Context context;
+
     private boolean mVerificationInProgress = false;
     private String mVerificationId;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
@@ -60,6 +64,7 @@ public class TelaInicial extends AppCompatActivity {
     private ViewGroup mPhoneNumberViews;
     private ViewGroup mSignedInViews;
 
+    private EditText edtNome;
     private EditText edtTelefone;
     private Button btnConfirmar;
     private EditText edtSms;
@@ -68,17 +73,21 @@ public class TelaInicial extends AppCompatActivity {
 
     private TextView title_text;
     private TextView detail;
-    private Button mSignOutButton;
+    private Button btnCliente;
+    private Button btnTecnico;
+    private Button btnSair;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_inicial);
+        context = getBaseContext();
 
         mPhoneNumberViews = (ViewGroup) findViewById(R.id.phone_auth_fields);
         mSignedInViews = (ViewGroup) findViewById(R.id.signed_in_buttons);
 
+        edtNome = (EditText) findViewById(R.id.edtNome);
         edtTelefone = (EditText) findViewById(R.id.edtTelefone);
         btnConfirmar = (Button) findViewById(R.id.btnConfirmar);
         edtSms = (EditText) findViewById(R.id.edtSMS);
@@ -86,7 +95,23 @@ public class TelaInicial extends AppCompatActivity {
         txtMensagem = (TextView) findViewById(R.id.txtMensagem);
         title_text = (TextView) findViewById(R.id.title_text);
         detail = (TextView) findViewById(R.id.detail);
-        mSignOutButton = (Button) findViewById(R.id.sign_out_button);
+
+        btnCliente = (Button) findViewById(R.id.btnCliente);
+        btnTecnico = (Button) findViewById(R.id.btnTecnico);
+
+
+        btnCliente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mIntent = new Intent(context, ListarTvs.class);
+                //mIntent.putExtra(Constantes.PARAMETRO, 10);
+               // mIntent.putExtra(Constantes.TIPO, 1);
+                //Intent mIntent = new Intent("ABACAXI");
+                //
+                startActivity(mIntent);
+            }
+        });
+        btnSair = (Button) findViewById(R.id.btnSair);
 
         btnConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,7 +142,8 @@ public class TelaInicial extends AppCompatActivity {
             }
         });
 
-        mSignOutButton.setOnClickListener(new View.OnClickListener() {
+
+        btnSair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signOut();
@@ -373,20 +399,23 @@ public class TelaInicial extends AppCompatActivity {
             mPhoneNumberViews.setVisibility(View.VISIBLE);
             mSignedInViews.setVisibility(View.GONE);
 
-            txtMensagem.setText("Logar");;
+            txtMensagem.setText("Logar");
+            ;
         } else {
             // Signed in
             mPhoneNumberViews.setVisibility(View.GONE);
             mSignedInViews.setVisibility(View.VISIBLE);
 
-            title_text.setText(user.getPhoneNumber());
+            //title_text.setText(user.getPhoneNumber());
+
+            title_text.setText("Olá " + edtNome.getText());
 
             edtTelefone.setText(null);
             edtSms.setText(null);
 
             txtMensagem.setText("Logado");
 
-            detail.setText("Usuário: " + user.getUid());
+            //detail.setText("Usuário: " + user.getUid());
         }
     }
 
