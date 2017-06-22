@@ -1,0 +1,126 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:layout_marginTop="20dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layInicial"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="26sp"
+            android:layout_marginBottom="30dp"
+            android:textAlignment="center"
+            android:text="Seja bem-vindo"/>
+
+        <RadioGroup
+            android:id="@+id/groUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radCliente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Procuro um Técnico"
+                android:textSize="19dp" />
+
+            <RadioButton
+                android:id="@+id/radTecnico"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cadastrar meus serviços"
+                android:textSize="19dp" />
+        </RadioGroup>
+
+
+        <EditText
+            android:id="@+id/edtNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:hint="Nome completo"
+            android:textSize="21sp"
+            android:maxLength="100" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edtTelefone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:layout_marginBottom="50dp"
+                android:hint="(DDD) Número do celular"
+
+                android:inputType="phone"
+                android:maxLength="12"
+                android:textSize="19sp" />
+
+            <Button
+                android:id="@+id/btnAvancar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Avançar" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/laySMS"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/txtTituloSMS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:text=" "
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/edtSMS"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:layout_marginBottom="50dp"
+            android:hint="Digite o código de 6 digitos"
+            android:inputType="phone"
+            android:maxLength="6" />
+
+        <Button
+            android:id="@+id/btnEnviar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Avançar" />
+
+            </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

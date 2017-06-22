@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Fabricante"
+        android:textSize="23sp" />
+
+    <Spinner
+        android:id="@+id/sp_fabricante"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:textSize="23sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Defeito"
+        android:textSize="23sp" />
+
+    <Spinner
+        android:id="@+id/sp_defeito"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:textSize="23sp" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Observação"
+        android:textSize="23sp" />
+
+    <EditText
+        android:id="@+id/edtObs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Máximo 140 caracteres"
+        android:maxLength="140"
+        android:layout_marginBottom="40dp"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/btnAvancar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Avançar"
+        android:textSize="19sp"/>
+
+</LinearLayout>
+
+

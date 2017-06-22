@@ -1,0 +1,85 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="30dp"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/edtNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome completo"
+        android:maxLength="100"
+        android:layout_marginBottom="50dp" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="50dp">
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Busco um Técnico"
+            android:textSize="16dp" />
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Sou um Técnico"
+            android:textSize="16dp" />
+    </RadioGroup>
+
+
+    <EditText
+        android:id="@+id/edtTelefone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="(DDD) Numero do celular"
+        android:textSize="22sp"
+
+        android:inputType="phone"
+        android:maxLength="14"
+        android:layout_marginBottom="50dp"/>
+
+    <Button
+        android:id="@+id/btnAvancar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Avançar" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edtSMS"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:hint="Código de verificação"
+            android:inputType="phone"
+            android:maxLength="6" />
+
+        <Button
+            android:id="@+id/btnEnviar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Enviar" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSair"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sair"
+        android:visibility="invisible" />
+
+</LinearLayout>

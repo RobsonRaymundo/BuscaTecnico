@@ -21,7 +21,7 @@ public class Registro extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tela_inicial);
+        setContentView(R.layout.tela_inicial_old);
 
         try
 
