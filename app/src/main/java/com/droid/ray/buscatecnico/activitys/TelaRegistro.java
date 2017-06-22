@@ -183,11 +183,9 @@ public class TelaRegistro extends AppCompatActivity {
                             FirebaseUser user = task.getResult().getUser();
 
                             Usuario usuario = new Usuario();
-
+                            usuario.setId(user.getUid());
                             usuario.setTelefone(user.getPhoneNumber().toString());
                             usuario.setNome(edtNome.getText().toString());
-                            usuario.setId(user.getUid());
-
                             if(radCliente.isChecked())
                             {
                                 usuario.setTipo("Cliente");

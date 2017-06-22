@@ -86,6 +86,7 @@ public class SelecionarTipoDefeito extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseUser currentUser = FireBase.getFirebaseAuth().getCurrentUser();
                 Pedido pedido = new Pedido();
+                pedido.setId(currentUser.getUid());
                 pedido.setTelefone(currentUser.getPhoneNumber().toString());
                 pedido.setFabricante(fabricante);
                 pedido.setDefeito(defeito);

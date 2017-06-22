@@ -10,6 +10,7 @@ import java.util.Map;
  */
 
 public class Pedido {
+    private String id;
     private String telefone;
     private String fabricante;
     private String defeito;
@@ -20,18 +21,27 @@ public class Pedido {
     }
 
     public void Salvar() {
-        FireBase.getFireBasePedido().child(String.valueOf(getTelefone())).setValue(this.toMap());
+        FireBase.getFireBasePedido().push().child(String.valueOf(getTelefone())).setValue(this.toMap());
     }
 
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("id", getId());
         hashMap.put("telefone", getTelefone());
         hashMap.put("fabricante", getFabricante());
         hashMap.put("defeito", getDefeito());
         hashMap.put("observacao", getObservacao());
         hashMap.put("status", getStatus());
         return hashMap;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTelefone() {
