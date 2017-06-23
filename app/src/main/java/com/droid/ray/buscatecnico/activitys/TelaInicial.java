@@ -36,7 +36,7 @@ public class TelaInicial extends AppCompatActivity {
                     Intent intent = null;
 
                     if (getUsuario != null && getUsuario.getTela().toString().equals("Registro")) {
-                        intent = new Intent(getBaseContext(), SelecionarTipoDefeito.class);
+                        intent = new Intent(getBaseContext(), TelaLogado.class);
                     } else {
                         intent = new Intent(getBaseContext(), TelaRegistro.class);
                     }

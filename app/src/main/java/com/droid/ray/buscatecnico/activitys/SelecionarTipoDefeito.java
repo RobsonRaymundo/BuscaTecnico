@@ -1,6 +1,7 @@
 package com.droid.ray.buscatecnico.activitys;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -93,6 +94,9 @@ public class SelecionarTipoDefeito extends AppCompatActivity {
                 pedido.setObservacao(edtObs.getText().toString());
                 pedido.setStatus("Novo");
                 pedido.Salvar();
+
+                Intent intent = new Intent(context, TelaLogado.class);
+                startActivity(intent);
             }
         });
 

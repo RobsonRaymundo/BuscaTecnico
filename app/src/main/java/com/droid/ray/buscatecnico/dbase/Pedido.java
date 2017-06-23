@@ -9,7 +9,7 @@ import java.util.Map;
  * Created by Robson on 21/06/2017.
  */
 
-public class Pedido {
+public class Pedido  {
     private String id;
     private String telefone;
     private String fabricante;
@@ -21,7 +21,8 @@ public class Pedido {
     }
 
     public void Salvar() {
-        FireBase.getFireBasePedido().push().child(String.valueOf(getTelefone())).setValue(this.toMap());
+        //FireBase.getFireBasePedido().push().child(String.valueOf(getTelefone())).setValue(this.toMap());
+        FireBase.getFireBasePedido().child(String.valueOf(getTelefone())).push().setValue(this.toMap());
     }
 
     @Exclude
