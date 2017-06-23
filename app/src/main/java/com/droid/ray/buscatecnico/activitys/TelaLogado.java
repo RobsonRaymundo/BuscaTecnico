@@ -1,5 +1,6 @@
 package com.droid.ray.buscatecnico.activitys;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,30 +14,48 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.droid.ray.buscatecnico.R;
 import com.droid.ray.buscatecnico.dbase.FireBase;
 import com.droid.ray.buscatecnico.dbase.Pedido;
 import com.droid.ray.buscatecnico.dbase.Usuario;
+import com.droid.ray.buscatecnico.lists.HashMapGen;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class TelaLogado extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private Context context;
+    private ListView lv_pedidos;
     private TextView txtNavHeaderNome;
     private TextView txtNavHeaderTelefone;
     private String telefone = "";
+    //private ArrayList<Pedido> pedidos = new ArrayList<>();
+    private SimpleAdapter adapter_pedidos;
+    private ArrayList<HashMapGen> pedidos = new ArrayList<>();
+    private String[] from = {HashMapGen.FABRICANTE , HashMapGen.DATA, HashMapGen.STATUS };
+    private int[] to = { R.id.celula_tv_fabricante, R.id.celula_tv_data, R.id.celula_tv_status};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_logado);
+        context = getBaseContext();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -58,6 +77,22 @@ public class TelaLogado extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+        lv_pedidos = (ListView) findViewById(R.id.lv_pedidos);
+
+        lv_pedidos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                HashMapGen cAux = (HashMapGen) parent.getItemAtPosition(position);
+                //
+                Toast.makeText(
+                        context,
+                        cAux.get(HashMapGen.FABRICANTE),
+                        Toast.LENGTH_SHORT
+                ).show();
+            }
+        });
 
         FirebaseUser currentUser = FireBase.getFirebaseAuth().getCurrentUser();
 
@@ -100,9 +135,51 @@ public class TelaLogado extends AppCompatActivity
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     Pedido getPedido = dataSnapshot.getValue(Pedido.class);
                     if (getPedido != null) {
-                        String fabricante = getPedido.getFabricante().toString();
-                    }
 
+                        HashMapGen item = new HashMapGen();
+                        item.put(HashMapGen.FABRICANTE, getPedido.getFabricante().toString());
+                        item.put(HashMapGen.DATA, getPedido.getData().toString());
+                        item.put(HashMapGen.STATUS, getPedido.getStatus().toString());
+
+                        //
+                        pedidos.add(item);
+
+
+
+                        adapter_pedidos = new SimpleAdapter(
+                                context,
+                                pedidos,
+                                R.layout.celula,
+                                from,
+                                to
+                        );
+                        //
+
+                        lv_pedidos.setAdapter(adapter_pedidos);
+
+                        /*
+
+                        Pedido cAux = new Pedido();
+                        cAux.setId(getPedido.getId().toString());
+                        cAux.setDefeito(getPedido.getDefeito().toString());
+                        cAux.setStatus(getPedido.getStatus().toString());
+                        cAux.setTelefone(getPedido.getTelefone().toString());
+                        cAux.setObservacao(getPedido.getObservacao().toString());
+                        cAux.setDefeito(fabricante);
+
+                        pedidos.add(cAux);
+
+                        lv_pedidos.setAdapter(
+
+                                new ArrayAdapter<Pedido>(
+                                        context,
+                                        R.layout.simple_list_item_1,
+                                        pedidos
+                                )
+                        );
+                        */
+
+                    }
                 }
 
                 @Override
@@ -150,6 +227,9 @@ public class TelaLogado extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.tela_logado, menu);
+
+
+        //
         return true;
     }
 
@@ -188,10 +268,9 @@ public class TelaLogado extends AppCompatActivity
         return true;
     }
 
-
-
-
-
-
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String x = "f";
+    }
 }

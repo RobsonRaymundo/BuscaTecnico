@@ -2,6 +2,7 @@ package com.droid.ray.buscatecnico.dbase;
 
 import com.google.firebase.database.Exclude;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,13 +10,14 @@ import java.util.Map;
  * Created by Robson on 21/06/2017.
  */
 
-public class Pedido  {
+public class Pedido {
     private String id;
     private String telefone;
     private String fabricante;
     private String defeito;
     private String observacao;
     private String status;
+    private String data;
 
     public Pedido() {
     }
@@ -34,7 +36,13 @@ public class Pedido  {
         hashMap.put("defeito", getDefeito());
         hashMap.put("observacao", getObservacao());
         hashMap.put("status", getStatus());
+        hashMap.put("data", getData());
         return hashMap;
+    }
+
+    @Override
+    public String toString() {
+        return telefone;
     }
 
     public String getId() {
@@ -83,6 +91,14 @@ public class Pedido  {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 }
 

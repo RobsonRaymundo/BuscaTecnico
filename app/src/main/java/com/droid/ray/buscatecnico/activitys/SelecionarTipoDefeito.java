@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.Time;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,6 +21,11 @@ import com.droid.ray.buscatecnico.lists.Fabricante;
 import com.droid.ray.buscatecnico.lists.TipoProblema;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class SelecionarTipoDefeito extends AppCompatActivity {
 
@@ -46,9 +52,9 @@ public class SelecionarTipoDefeito extends AppCompatActivity {
         sp_fabricante = (Spinner) findViewById(R.id.sp_fabricante);
         adapter_fabricante = new ArrayAdapter<String>(
                 context,
-                android.R.layout.simple_spinner_item,
+                R.layout.simple_spinner_item,
                 Fabricante.ListaFabricantes());
-        adapter_fabricante.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter_fabricante.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
         sp_fabricante.setAdapter(adapter_fabricante);
         sp_fabricante.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -66,9 +72,9 @@ public class SelecionarTipoDefeito extends AppCompatActivity {
         sp_defeito = (Spinner) findViewById(R.id.sp_defeito);
         adapter_defeito = new ArrayAdapter<String>(
                 context,
-                android.R.layout.simple_spinner_item,
+                R.layout.simple_spinner_item,
                 TipoProblema.ListarTipoProblema());
-        adapter_defeito.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter_defeito.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
         sp_defeito.setAdapter(adapter_defeito);
         sp_defeito.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -92,7 +98,9 @@ public class SelecionarTipoDefeito extends AppCompatActivity {
                 pedido.setFabricante(fabricante);
                 pedido.setDefeito(defeito);
                 pedido.setObservacao(edtObs.getText().toString());
-                pedido.setStatus("Novo");
+                pedido.setStatus("Em aberto");
+
+                pedido.setData(getDateTime().toString());
                 pedido.Salvar();
 
                 Intent intent = new Intent(context, TelaLogado.class);
@@ -100,6 +108,12 @@ public class SelecionarTipoDefeito extends AppCompatActivity {
             }
         });
 
+    }
+
+    private String getDateTime() {
+
+        SimpleDateFormat simpleFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return simpleFormat.format( new Date( System.currentTimeMillis() ) );
     }
 
 }
