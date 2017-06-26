@@ -27,6 +27,12 @@ public class Usuario {
     private String senha;
     private String tipo;
     private String tela;
+    private String cpfcnpj;
+    private String tituloAnuncio;
+    private String descricaoAnuncio;
+    private String cep;
+
+
 
     public Usuario() {
     }
@@ -45,9 +51,11 @@ public class Usuario {
         hashMap.put("senha", getSenha());
         hashMap.put("tipo", getTipo());
         hashMap.put("tela", getTela());
-
+        hashMap.put("cpfcnpj", getCpfcnpj());
+        hashMap.put("tituloAnuncio", getTituloAnuncio());
+        hashMap.put("descricaoAnuncio", getDescricaoAnuncio());
+        hashMap.put("cep", getCep());
         return hashMap;
-
     }
 
     public String getTipo() {
@@ -104,5 +112,37 @@ public class Usuario {
 
     public void setTela(String tela) {
         this.tela = tela;
+    }
+
+    public String getCpfcnpj() {
+        return cpfcnpj;
+    }
+
+    public void setCpfcnpj(String cpfcnpj) {
+        this.cpfcnpj = cpfcnpj;
+    }
+
+    public String getTituloAnuncio() {
+        return tituloAnuncio;
+    }
+
+    public void setTituloAnuncio(String tituloAnuncio) {
+        this.tituloAnuncio = tituloAnuncio;
+    }
+
+    public String getDescricaoAnuncio() {
+        return descricaoAnuncio;
+    }
+
+    public void setDescricaoAnuncio(String descricaoAnuncio) {
+        this.descricaoAnuncio = descricaoAnuncio;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 }

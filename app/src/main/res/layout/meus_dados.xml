@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.droid.ray.buscatecnico.activitys.MeusDados">
+
+    <EditText
+        android:id="@+id/edtNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:hint="Nome completo"
+        android:textSize="21sp"
+        android:maxLength="100" />
+
+    <EditText
+        android:id="@+id/edtTelefone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:hint="(DDD) Número do celular"
+        android:inputType="phone"
+        android:maxLength="12"
+        android:textSize="19sp" />
+
+    <EditText
+        android:id="@+id/edtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:inputType="textEmailAddress"
+        android:hint="E-Mail"
+        android:textSize="21sp"
+        android:maxLength="50" />
+
+    <EditText
+        android:id="@+id/edtCpfCnpj"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:inputType=""
+        android:hint="CPF ou CNPJ"
+        android:textSize="21sp"
+        android:maxLength="14" />
+
+    <EditText
+        android:id="@+id/edtCep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:hint="CEP"
+        android:textSize="21sp"
+        android:maxLength="9" />
+
+    <EditText
+        android:id="@+id/edtTituloAnuncio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:hint="Titulo anúncio"
+        android:textSize="21sp"
+        android:maxLength="30" />
+
+    <EditText
+        android:id="@+id/edtDescricaoAnuncio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:hint="Descrição anúncio"
+        android:textSize="21sp"
+        android:maxLength="140"
+        android:inputType="textMultiLine"/>
+
+    <Button
+        android:id="@+id/btnAvancar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Avançar"
+        android:textSize="19sp"/>
+
+
+</LinearLayout>
+
+

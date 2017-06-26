@@ -10,7 +10,7 @@ public class Fabricante {
 
     public static ArrayList<String> ListaFabricantes(){
         ArrayList<String> fabricantes = new ArrayList<>();
-        fabricantes.add("<Selecione uma opção>");
+        fabricantes.add("<Selecione o fabricante>");
         fabricantes.add("AOC");
         fabricantes.add("CCE");
         fabricantes.add("Gradiente");
@@ -24,7 +24,7 @@ public class Fabricante {
         fabricantes.add("Sharp");
         fabricantes.add("Sony");
         fabricantes.add("Toshiba");
-        fabricantes.add("Outras");
+        fabricantes.add("Outros");
         return fabricantes;
     }
 }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class TipoProblema {
     public static ArrayList<String> ListarTipoProblema(){
         ArrayList<String> tiposProblemas = new ArrayList<>();
-        tiposProblemas.add("<Selecione uma opção>");
+        tiposProblemas.add("<Selecione o problema>");
         tiposProblemas.add("Não liga");
         tiposProblemas.add("3D não funciona");
         tiposProblemas.add("Imagem não aparece, só sai som");
@@ -17,6 +17,7 @@ public class TipoProblema {
         tiposProblemas.add("Tela manchada");
         tiposProblemas.add("Tela quebrada");
         tiposProblemas.add("Wifi não funciona");
+        tiposProblemas.add("Outros");
         return tiposProblemas;
     }
 }

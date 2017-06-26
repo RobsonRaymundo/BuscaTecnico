@@ -78,6 +78,7 @@ public class TelaLogado extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
+
         lv_pedidos = (ListView) findViewById(R.id.lv_pedidos);
 
         lv_pedidos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -107,9 +108,15 @@ public class TelaLogado extends AppCompatActivity
                     // Get Post object and use the values to update the UI
                     Usuario getUsuario = dataSnapshot.getValue(Usuario.class);
 
-
                     NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
                     View headerView = navigationView.getHeaderView(0);
+
+                    /*
+                    Menu menu = navigationView.getMenu();
+                    MenuItem target = menu.findItem(R.id.nav_meusPedidos);
+                    target.setVisible(false);
+                    */
+
                     txtNavHeaderNome = (TextView) headerView.findViewById(R.id.txtNavHeaderNome);
                     txtNavHeaderNome.setText(getUsuario.getNome().toString());
                     txtNavHeaderTelefone = (TextView) headerView.findViewById(R.id.txtNavHeaderTelefone);
@@ -143,8 +150,6 @@ public class TelaLogado extends AppCompatActivity
 
                         //
                         pedidos.add(item);
-
-
 
                         adapter_pedidos = new SimpleAdapter(
                                 context,
@@ -254,6 +259,10 @@ public class TelaLogado extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        if (id == R.id.nav_meusDados) {
+            Intent intent = new Intent(getBaseContext(), MeusDados.class);
+            startActivity(intent);
+        }
         if (id == R.id.nav_buscarTecnico) {
             Intent intent = new Intent(getBaseContext(), SelecionarTipoDefeito.class);
             startActivity(intent);

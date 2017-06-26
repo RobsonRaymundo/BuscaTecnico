@@ -50,8 +50,9 @@
         <activity android:name=".activitys.SelecionarTipoDefeito" />
         <activity
             android:name=".activitys.TelaLogado"
-            android:label="@string/title_activity_tela_logado"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activitys.MeusDados"></activity>
     </application>
 
 </manifest>
