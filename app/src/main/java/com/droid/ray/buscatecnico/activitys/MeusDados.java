@@ -48,12 +48,15 @@ public class MeusDados extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (dadosUsuario != null) {
+                    dadosUsuario.setNome(edtNome.getText().toString());
+                    dadosUsuario.setTelefone(edtTelefone.getText().toString());
                     dadosUsuario.setEmail(edtEmail.getText().toString());
                     dadosUsuario.setCpfcnpj(edtCpfCnpj.getText().toString());
                     dadosUsuario.setCep(edtCep.getText().toString());
                     dadosUsuario.setTituloAnuncio(edtTituloAnuncio.getText().toString());
                     dadosUsuario.setDescricaoAnuncio(edtDescricaoAnuncio.getText().toString());
                     dadosUsuario.Salvar();
+                    finish();
                 }
             }
         });

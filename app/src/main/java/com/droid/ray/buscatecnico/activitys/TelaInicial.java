@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.droid.ray.buscatecnico.R;
 import com.droid.ray.buscatecnico.dbase.FireBase;
 import com.droid.ray.buscatecnico.dbase.Usuario;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,6 +21,7 @@ public class TelaInicial extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.tela_inicial);
 
         FirebaseUser currentUser = FireBase.getFirebaseAuth().getCurrentUser();
         String telefone = "";
