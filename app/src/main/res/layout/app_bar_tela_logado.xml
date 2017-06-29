@@ -7,6 +7,7 @@
     tools:context="com.droid.ray.buscatecnico.activitys.TelaLogado">
 
     <android.support.design.widget.AppBarLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">

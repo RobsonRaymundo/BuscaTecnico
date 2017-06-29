@@ -47,7 +47,7 @@
         </service>
         <!-- [END firebase_iid_service] -->
         <activity android:name=".activitys.TelaRegistro" />
-        <activity android:name=".activitys.SelecionarTipoDefeito" />
+        <activity android:name=".activitys.TelaPedido" />
         <activity
             android:name=".activitys.TelaLogado"
             android:theme="@style/AppTheme.NoActionBar" />

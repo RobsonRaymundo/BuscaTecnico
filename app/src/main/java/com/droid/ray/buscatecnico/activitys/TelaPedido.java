@@ -4,30 +4,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.format.Time;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.droid.ray.buscatecnico.R;
 import com.droid.ray.buscatecnico.dbase.FireBase;
 import com.droid.ray.buscatecnico.dbase.Pedido;
-import com.droid.ray.buscatecnico.dbase.Usuario;
 import com.droid.ray.buscatecnico.lists.Fabricante;
 import com.droid.ray.buscatecnico.lists.TipoProblema;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.sql.Date;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
-public class SelecionarTipoDefeito extends AppCompatActivity {
+public class TelaPedido extends AppCompatActivity {
 
     Context context;
     Spinner sp_fabricante;
@@ -43,7 +37,7 @@ public class SelecionarTipoDefeito extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.selecionar_tipo_defeito);
+        setContentView(R.layout.tela_pedido);
 
         context = getBaseContext();
         edtObs = (EditText) findViewById(R.id.edtObs);
