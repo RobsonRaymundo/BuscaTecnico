@@ -28,6 +28,7 @@
         android:hint="(DDD) Número do celular"
         android:inputType="phone"
         android:maxLength="14"
+        android:enabled="false"
         android:textSize="19sp" />
 
     <EditText

@@ -264,8 +264,6 @@ public class TelaLogado extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_Ajuda) {
 
-        } else if (id == R.id.nav_meusPedidos) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

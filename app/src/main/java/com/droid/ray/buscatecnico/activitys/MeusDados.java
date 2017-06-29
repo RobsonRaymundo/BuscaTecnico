@@ -91,6 +91,15 @@ public class MeusDados extends AppCompatActivity {
 
                     if (dadosUsuario.getDescricaoAnuncio() != null)
                         edtDescricaoAnuncio.setText(dadosUsuario.getDescricaoAnuncio().toString());
+
+                    if (dadosUsuario.getTipo() != null) {
+                        if (dadosUsuario.getTipo().toString().contains("Cliente")) {
+                            edtTituloAnuncio.setVisibility(View.GONE);
+                            edtDescricaoAnuncio.setVisibility(View.GONE);
+                            edtCpfCnpj.setHint("CPF");
+                        }
+
+                    }
                 }
 
                 @Override

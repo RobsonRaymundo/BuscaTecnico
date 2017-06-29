@@ -186,18 +186,20 @@ public class TelaRegistro extends AppCompatActivity {
                             usuario.setId(user.getUid());
                             usuario.setTelefone(user.getPhoneNumber().toString());
                             usuario.setNome(edtNome.getText().toString());
+                            Intent mIntent;
                             if(radCliente.isChecked())
                             {
                                 usuario.setTipo("Cliente");
+                                mIntent = new Intent(context, TelaPedido.class);
                             }
                             else
                             {
                                 usuario.setTipo("Tecnico");
+                                 mIntent = new Intent(context, MeusDados.class);
                             }
                             usuario.setTela("Registro");
                             usuario.Salvar();
 
-                            Intent mIntent = new Intent(context, ListarTvs.class);
                             startActivity(mIntent);
 
                         } else {

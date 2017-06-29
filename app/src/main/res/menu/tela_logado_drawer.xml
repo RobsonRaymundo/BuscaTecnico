@@ -10,10 +10,7 @@
             android:id="@+id/nav_buscarTecnico"
             android:icon="@drawable/ic_menu_manage"
             android:title="Buscar técnico" />
-        <item
-            android:id="@+id/nav_meusPedidos"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Meus pedidos" />
+
         <item
             android:id="@+id/nav_Ajuda"
             android:icon="@drawable/ic_menu_send"
