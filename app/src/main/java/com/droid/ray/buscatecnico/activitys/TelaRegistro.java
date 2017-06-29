@@ -31,6 +31,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.concurrent.TimeUnit;
 
@@ -199,6 +200,8 @@ public class TelaRegistro extends AppCompatActivity {
                             }
                             usuario.setTela("Registro");
                             usuario.Salvar();
+
+                            FirebaseMessaging.getInstance().subscribeToTopic("news");
 
                             startActivity(mIntent);
 

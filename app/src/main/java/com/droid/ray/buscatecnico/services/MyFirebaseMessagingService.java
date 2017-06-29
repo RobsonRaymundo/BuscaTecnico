@@ -16,8 +16,16 @@
 
 package com.droid.ray.buscatecnico.services;
 
+import android.app.NotificationManager;
+import android.media.AudioAttributes;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.droid.ray.buscatecnico.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -49,7 +57,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
-            Log.d(TAG, "Message data payload: " + remoteMessage.getData().get("message"));
+
+            String mensagem = remoteMessage.getData().get("message");
+            msgNotification(mensagem);
+            Log.d(TAG, "Message data payload: " + mensagem);
+            soundNotification();
+       //     Toast.makeText(this, mensagem, Toast.LENGTH_LONG).show();
+
         }
 
         // Check if message contains a notification payload.
@@ -61,5 +75,45 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // message, here is where that should be initiated. See sendNotification method below.
     }
     // [END receive_message]
+
+
+    private void msgNotification(String msg)
+    {
+        try
+        {
+            NotificationCompat.Builder mBuilder =
+                    new NotificationCompat.Builder(this)
+                            .setSmallIcon(R.drawable.cast_ic_notification_small_icon)
+                            .setContentTitle("BuscaTecnico")
+                            .setContentText(msg);
+
+
+            int mNotificationId = 001;
+
+            NotificationManager mNotifyMgr =
+                    (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+            mNotifyMgr.notify(mNotificationId, mBuilder.build());
+
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
+    private void soundNotification() {
+        try {
+            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+            AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .build();
+            r.setAudioAttributes(audioAttributes);
+            r.play();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

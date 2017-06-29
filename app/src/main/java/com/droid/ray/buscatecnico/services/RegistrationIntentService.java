@@ -21,12 +21,14 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.droid.ray.buscatecnico.activitys.Registro;
+import com.droid.ray.buscatecnico.activitys.TelaPedido;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
@@ -39,7 +41,7 @@ import java.net.URL;
 public class RegistrationIntentService extends IntentService {
 
     private static final String TAG = "RegIntentService";
-    private static final String[] TOPICS = {"global"};
+
     private static String token_to = null;
 
     public RegistrationIntentService() {
@@ -58,24 +60,15 @@ public class RegistrationIntentService extends IntentService {
 
     private void sendRegistrationToServer() throws Exception {
 
-
-
-
-
-
-
-
-
-
         // Prepare JSON containing the GCM message content. What to send and where to send.
         JSONObject jGcmData = new JSONObject();
         JSONObject jData = new JSONObject();
-        jData.put("message", "Teste BuscaTecnico");
+        jData.put("message", "Novo Pedido");
 
-        token_to = "fFOsuoeDUoI:APA91bGjyN4b0SRhTPW-AKHA2a3_fAH_n-NJ3BTeG-o5IkbMW-44EqokJkTfc0R5QrQaY4_Gd0u6tE1lMTBUBjv_Va_4SCb9Q79YbJGYDaBUDIclDNPOKYjJtlN2zBy5Fv60TWoJ8t9n"; //BuscaTecnico
-
+     //   token_to = "fFOsuoeDUoI:APA91bGjyN4b0SRhTPW-AKHA2a3_fAH_n-NJ3BTeG-o5IkbMW-44EqokJkTfc0R5QrQaY4_Gd0u6tE1lMTBUBjv_Va_4SCb9Q79YbJGYDaBUDIclDNPOKYjJtlN2zBy5Fv60TWoJ8t9n"; //BuscaTecnico
+//token_to = FirebaseInstanceId.getInstance().getToken();
         if (token_to == null || token_to.isEmpty()) {
-            jGcmData.put("to", "/topics/global"); // para todos que tem o aplicativo
+            jGcmData.put("to", "/topics/news"); // para todos que tem o aplicativo
         } else jGcmData.put("to", token_to); // para um aparelho especifico
 
         // What to send in GCM message.

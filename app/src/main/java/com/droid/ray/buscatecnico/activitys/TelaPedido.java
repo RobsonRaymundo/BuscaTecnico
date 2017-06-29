@@ -16,20 +16,23 @@ import com.droid.ray.buscatecnico.dbase.FireBase;
 import com.droid.ray.buscatecnico.dbase.Pedido;
 import com.droid.ray.buscatecnico.lists.Fabricante;
 import com.droid.ray.buscatecnico.lists.TipoProblema;
+import com.droid.ray.buscatecnico.services.RegistrationIntentService;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 public class TelaPedido extends AppCompatActivity {
 
-    Context context;
-    Spinner sp_fabricante;
-    Spinner sp_defeito;
-    EditText edtObs;
-    Button btnAvancar;
-    String fabricante;
-    String defeito;
+    public String token;
+    private Context context;
+    private Spinner sp_fabricante;
+    private Spinner sp_defeito;
+    private EditText edtObs;
+    private Button btnAvancar;
+    private String fabricante;
+    private String defeito;
 
     private ArrayAdapter<String> adapter_fabricante;
     private ArrayAdapter<String> adapter_defeito;
@@ -97,8 +100,13 @@ public class TelaPedido extends AppCompatActivity {
                 pedido.setData(getDateTime().toString());
                 pedido.Salvar();
 
+                Intent intentService = new Intent(TelaPedido.this, RegistrationIntentService.class);
+                startService(intentService);
+
                 Intent intent = new Intent(context, TelaLogado.class);
                 startActivity(intent);
+
+
             }
         });
 
