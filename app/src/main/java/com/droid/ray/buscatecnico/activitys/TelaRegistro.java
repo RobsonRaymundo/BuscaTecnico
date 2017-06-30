@@ -196,14 +196,16 @@ public class TelaRegistro extends AppCompatActivity {
                             else
                             {
                                 usuario.setTipo("Tecnico");
-                                 mIntent = new Intent(context, MeusDados.class);
+                                mIntent = new Intent(context, MeusDados.class);
+                                FirebaseMessaging.getInstance().subscribeToTopic("news");
+
                             }
                             usuario.setTela("Registro");
                             usuario.Salvar();
 
-                            FirebaseMessaging.getInstance().subscribeToTopic("news");
 
                             startActivity(mIntent);
+                            finish();
 
                         } else {
                             // Sign in failed, display a message and update the UI

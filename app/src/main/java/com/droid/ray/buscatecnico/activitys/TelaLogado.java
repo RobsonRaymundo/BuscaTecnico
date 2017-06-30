@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,7 @@ public class TelaLogado extends AppCompatActivity
     private String[] from = {HashMapGen.FABRICANTE , HashMapGen.DATA, HashMapGen.STATUS };
     private int[] to = { R.id.celula_tv_fabricante, R.id.celula_tv_data, R.id.celula_tv_status};
 
+    TabHost tabHost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +80,32 @@ public class TelaLogado extends AppCompatActivity
 
 
 
+        TabHost host = (TabHost)findViewById(R.id.tabHost);
+        host.setup();
+
+        //Tab 1
+        TabHost.TabSpec spec = host.newTabSpec("tab1");
+        spec.setContent(R.id.tab1);
+        spec.setIndicator("Meus pedidos");
+        host.addTab(spec);
+
+
+        //if (Usuario.getTipo() != null) {
+        //    if (!Usuario.getTipo().toString().contains("Cliente")) {
+
+                //Tab 2
+                spec = host.newTabSpec("tab2");
+                spec.setContent(R.id.tab2);
+                spec.setIndicator("Tab 2");
+                //host.addTab(spec);
+
+                //Tab 3
+                spec = host.newTabSpec("Tab Three");
+                spec.setContent(R.id.tab3);
+                spec.setIndicator("Tab Three");
+                //  host.addTab(spec);
+//            }
+ //       }
         lv_pedidos = (ListView) findViewById(R.id.lv_pedidos);
 
         lv_pedidos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
