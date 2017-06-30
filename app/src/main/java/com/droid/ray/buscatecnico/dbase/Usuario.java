@@ -25,7 +25,7 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
-    private static String tipo;
+    private String tipo;
     private String tela;
     private String cpfcnpj;
     private String tituloAnuncio;
@@ -58,7 +58,7 @@ public class Usuario {
         return hashMap;
     }
 
-    public static String getTipo() {
+    public String getTipo() {
         return tipo;
     }
 

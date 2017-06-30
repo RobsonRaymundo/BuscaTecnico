@@ -37,8 +37,10 @@ public class TelaInicial extends AppCompatActivity {
                     Usuario getUsuario = dataSnapshot.getValue(Usuario.class);
                     Intent intent = null;
 
+
                     if (getUsuario != null && getUsuario.getTela().toString().equals("Registro")) {
                         intent = new Intent(getBaseContext(), TelaLogado.class);
+                        intent.putExtra("tipo", getUsuario.getTipo().toString());
                     } else {
                         intent = new Intent(getBaseContext(), TelaRegistro.class);
                     }

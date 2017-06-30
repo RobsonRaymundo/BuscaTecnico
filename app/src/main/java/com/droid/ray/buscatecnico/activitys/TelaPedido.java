@@ -37,12 +37,18 @@ public class TelaPedido extends AppCompatActivity {
     private ArrayAdapter<String> adapter_fabricante;
     private ArrayAdapter<String> adapter_defeito;
 
+    private String tipo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_pedido);
 
         context = getBaseContext();
+
+        tipo =  getIntent().getStringExtra("tipo");
+
+
+
         edtObs = (EditText) findViewById(R.id.edtObs);
         btnAvancar = (Button) findViewById(R.id.btnAvancar);
 
@@ -104,8 +110,8 @@ public class TelaPedido extends AppCompatActivity {
                 startService(intentService);
 
                 Intent intent = new Intent(context, TelaLogado.class);
+                intent.putExtra("tipo", tipo);
                 startActivity(intent);
-
 
             }
         });

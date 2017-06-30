@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TabHost;
@@ -46,14 +47,18 @@ public class TelaLogado extends AppCompatActivity
     //private ArrayList<Pedido> pedidos = new ArrayList<>();
     private SimpleAdapter adapter_pedidos;
     private ArrayList<HashMapGen> pedidos = new ArrayList<>();
-    private String[] from = {HashMapGen.FABRICANTE , HashMapGen.DATA, HashMapGen.STATUS };
-    private int[] to = { R.id.celula_tv_fabricante, R.id.celula_tv_data, R.id.celula_tv_status};
+    private String[] from = {HashMapGen.FABRICANTE, HashMapGen.DATA, HashMapGen.STATUS};
+    private int[] to = {R.id.celula_tv_fabricante, R.id.celula_tv_data, R.id.celula_tv_status};
 
-    TabHost tabHost;
+    private String tipo;
+    private TabHost host;
+    private LinearLayout LLtab2;
+    private LinearLayout LLtab3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        tipo = getIntent().getStringExtra("tipo");
         setContentView(R.layout.tela_logado);
 
         context = getBaseContext();
@@ -78,34 +83,50 @@ public class TelaLogado extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        LLtab2 = (LinearLayout) findViewById(R.id.tab2);
+        LLtab3 = (LinearLayout) findViewById(R.id.tab3);
 
 
-        TabHost host = (TabHost)findViewById(R.id.tabHost);
+
+        host = (TabHost) findViewById(R.id.tabHost);
         host.setup();
 
-        //Tab 1
-        TabHost.TabSpec spec = host.newTabSpec("tab1");
-        spec.setContent(R.id.tab1);
-        spec.setIndicator("Meus pedidos");
-        host.addTab(spec);
 
 
-        //if (Usuario.getTipo() != null) {
-        //    if (!Usuario.getTipo().toString().contains("Cliente")) {
 
-                //Tab 2
-                spec = host.newTabSpec("tab2");
-                spec.setContent(R.id.tab2);
-                spec.setIndicator("Tab 2");
-                //host.addTab(spec);
+        if (tipo.contains("Tecnico")) {
 
-                //Tab 3
-                spec = host.newTabSpec("Tab Three");
-                spec.setContent(R.id.tab3);
-                spec.setIndicator("Tab Three");
-                //  host.addTab(spec);
-//            }
- //       }
+            //Tab 1
+            TabHost.TabSpec spec = host.newTabSpec("tab1");
+            spec.setContent(R.id.tab1);
+            spec.setIndicator("Todas solicitações");
+            host.addTab(spec);
+
+            //Tab 2
+            spec = host.newTabSpec("tab2");
+            spec.setContent(R.id.tab2);
+            spec.setIndicator("Em atendimento");
+            host.addTab(spec);
+
+            //Tab 3
+            spec = host.newTabSpec("tab3");
+            spec.setContent(R.id.tab3);
+            spec.setIndicator("Atendidas");
+            host.addTab(spec);
+        }
+        else
+        {
+            //Tab 1
+            TabHost.TabSpec spec = host.newTabSpec("tab1");
+            spec.setContent(R.id.tab1);
+            spec.setIndicator("Minhas solicitações");
+            host.addTab(spec);
+
+            LLtab2.setVisibility(View.INVISIBLE);
+            LLtab3.setVisibility(View.INVISIBLE);
+        }
+
+
         lv_pedidos = (ListView) findViewById(R.id.lv_pedidos);
 
         lv_pedidos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
