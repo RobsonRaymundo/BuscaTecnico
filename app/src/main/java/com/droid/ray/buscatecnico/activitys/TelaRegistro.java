@@ -192,7 +192,7 @@ public class TelaRegistro extends AppCompatActivity {
                             {
                                 usuario.setTipo("Cliente");
                                 mIntent = new Intent(context, TelaPedido.class);
-                                mIntent.putExtra("tipo", usuario.getTipo().toString());
+
                             }
                             else
                             {

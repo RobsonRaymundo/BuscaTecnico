@@ -16,6 +16,7 @@ import com.droid.ray.buscatecnico.dbase.FireBase;
 import com.droid.ray.buscatecnico.dbase.Pedido;
 import com.droid.ray.buscatecnico.lists.Fabricante;
 import com.droid.ray.buscatecnico.lists.TipoProblema;
+import com.droid.ray.buscatecnico.others.Globais;
 import com.droid.ray.buscatecnico.services.RegistrationIntentService;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -37,17 +38,12 @@ public class TelaPedido extends AppCompatActivity {
     private ArrayAdapter<String> adapter_fabricante;
     private ArrayAdapter<String> adapter_defeito;
 
-    private String tipo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_pedido);
 
         context = getBaseContext();
-
-        tipo =  getIntent().getStringExtra("tipo");
-
-
 
         edtObs = (EditText) findViewById(R.id.edtObs);
         btnAvancar = (Button) findViewById(R.id.btnAvancar);
@@ -97,6 +93,7 @@ public class TelaPedido extends AppCompatActivity {
                 FirebaseUser currentUser = FireBase.getFirebaseAuth().getCurrentUser();
                 Pedido pedido = new Pedido();
                 pedido.setId(currentUser.getUid());
+                pedido.setNome(Globais.nomeUsuario);
                 pedido.setTelefone(currentUser.getPhoneNumber().toString());
                 pedido.setFabricante(fabricante);
                 pedido.setDefeito(defeito);
@@ -107,10 +104,10 @@ public class TelaPedido extends AppCompatActivity {
                 pedido.Salvar();
 
                 Intent intentService = new Intent(TelaPedido.this, RegistrationIntentService.class);
+                intentService.putExtra("nomeSolicitantePedido", Globais.nomeUsuario );
                 startService(intentService);
 
                 Intent intent = new Intent(context, TelaLogado.class);
-                intent.putExtra("tipo", tipo);
                 startActivity(intent);
 
             }

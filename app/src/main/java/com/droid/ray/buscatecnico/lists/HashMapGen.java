@@ -5,6 +5,7 @@ import java.util.HashMap;
 public class HashMapGen extends HashMap<String, String> {
 
     public static final String ID = "id";
+    public static final String NOME = "nome";
     public static final String TELEFONE = "telefone";
     public static final String FABRICANTE = "fabricante";
     public static final String DATA = "data";

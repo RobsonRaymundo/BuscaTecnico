@@ -12,12 +12,14 @@ import java.util.Map;
 
 public class Pedido {
     private String id;
+    private String nome;
     private String telefone;
     private String fabricante;
     private String defeito;
     private String observacao;
     private String status;
     private String data;
+    private String tecnico;
 
     public Pedido() {
     }
@@ -31,12 +33,14 @@ public class Pedido {
     public Map<String, Object> toMap() {
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("id", getId());
+        hashMap.put("nome", getNome());
         hashMap.put("telefone", getTelefone());
         hashMap.put("fabricante", getFabricante());
         hashMap.put("defeito", getDefeito());
         hashMap.put("observacao", getObservacao());
         hashMap.put("status", getStatus());
         hashMap.put("data", getData());
+        hashMap.put("tecnico", getTecnico());
         return hashMap;
     }
 
@@ -53,12 +57,28 @@ public class Pedido {
         this.id = id;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public String getTelefone() {
         return telefone;
     }
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public String getTecnico() {
+        return tecnico;
+    }
+
+    public void setTecnico(String tecnico) {
+        this.tecnico = tecnico;
     }
 
     public String getFabricante() {
@@ -100,5 +120,7 @@ public class Pedido {
     public void setData(String data) {
         this.data = data;
     }
+
+
 }
 

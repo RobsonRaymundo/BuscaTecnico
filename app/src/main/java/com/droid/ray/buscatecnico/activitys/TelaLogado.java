@@ -3,6 +3,7 @@ package com.droid.ray.buscatecnico.activitys;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.renderscript.Script;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -26,39 +27,59 @@ import com.droid.ray.buscatecnico.dbase.FireBase;
 import com.droid.ray.buscatecnico.dbase.Pedido;
 import com.droid.ray.buscatecnico.dbase.Usuario;
 import com.droid.ray.buscatecnico.lists.HashMapGen;
+import com.droid.ray.buscatecnico.others.Globais;
 import com.droid.ray.buscatecnico.services.RegistrationIntentService;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.droid.ray.buscatecnico.R.id.edtObs;
 
 public class TelaLogado extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Context context;
     private ListView lv_pedidos;
+    private ListView lv_pedidos_em_atendimento;
+    private ListView lv_pedidos_atendidas;
     private TextView txtNavHeaderNome;
     private TextView txtNavHeaderTelefone;
     private String telefone = "";
     //private ArrayList<Pedido> pedidos = new ArrayList<>();
     private SimpleAdapter adapter_pedidos;
     private ArrayList<HashMapGen> pedidos = new ArrayList<>();
+
+    private SimpleAdapter adapter_pedidos_em_atendimento;
+    private ArrayList<HashMapGen> pedidos_em_atendimento = new ArrayList<>();
+
+    private SimpleAdapter adapter_pedidos_atendidas;
+    private ArrayList<HashMapGen> pedidos_em_atendidas = new ArrayList<>();
+
     private String[] from = {HashMapGen.FABRICANTE, HashMapGen.DATA, HashMapGen.STATUS};
     private int[] to = {R.id.celula_tv_fabricante, R.id.celula_tv_data, R.id.celula_tv_status};
 
-    private String tipo;
+    private String[] from_tecnico = {HashMapGen.NOME, HashMapGen.FABRICANTE, HashMapGen.DATA, HashMapGen.STATUS};
+    private int[] to_tecnico = {R.id.celula_tecnico_nome, R.id.celula_tecnico_tv_fabricante, R.id.celula_tecnico_tv_data, R.id.celula_tecnico_tv_status};
+
+
     private TabHost host;
     private LinearLayout LLtab2;
     private LinearLayout LLtab3;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        tipo = getIntent().getStringExtra("tipo");
+
         setContentView(R.layout.tela_logado);
 
         context = getBaseContext();
@@ -87,14 +108,13 @@ public class TelaLogado extends AppCompatActivity
         LLtab3 = (LinearLayout) findViewById(R.id.tab3);
 
 
-
         host = (TabHost) findViewById(R.id.tabHost);
         host.setup();
 
 
 
 
-        if (tipo.contains("Tecnico")) {
+        if (Globais.tipoUsuario.contains("Tecnico")) {
 
             //Tab 1
             TabHost.TabSpec spec = host.newTabSpec("tab1");
@@ -113,9 +133,7 @@ public class TelaLogado extends AppCompatActivity
             spec.setContent(R.id.tab3);
             spec.setIndicator("Atendidas");
             host.addTab(spec);
-        }
-        else
-        {
+        } else {
             //Tab 1
             TabHost.TabSpec spec = host.newTabSpec("tab1");
             spec.setContent(R.id.tab1);
@@ -135,6 +153,30 @@ public class TelaLogado extends AppCompatActivity
 
                 HashMapGen cAux = (HashMapGen) parent.getItemAtPosition(position);
                 //
+
+                DatabaseReference pedidoRef = FireBase.getFireBasePedido().child(cAux.get(HashMapGen.TELEFONE).toString()).child(cAux.get(HashMapGen.ID).toString());
+
+                Map<String, Object> pedidoUpdates = new HashMap<String, Object>();
+                pedidoUpdates.put(HashMapGen.STATUS, "Em atendimento");
+
+                pedidoRef.updateChildren(pedidoUpdates);
+
+                Toast.makeText(
+                        context,
+                            cAux.get(HashMapGen.ID),
+                        Toast.LENGTH_SHORT
+                ).show();
+            }
+        });
+
+        lv_pedidos_em_atendimento = (ListView) findViewById(R.id.lv_pedidos_em_antendimento);
+
+        lv_pedidos_em_atendimento.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                HashMapGen cAux = (HashMapGen) parent.getItemAtPosition(position);
+                //
                 Toast.makeText(
                         context,
                         cAux.get(HashMapGen.FABRICANTE),
@@ -142,6 +184,23 @@ public class TelaLogado extends AppCompatActivity
                 ).show();
             }
         });
+
+        lv_pedidos_atendidas = (ListView) findViewById(R.id.lv_pedidos_antendidas);
+
+        lv_pedidos_atendidas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                HashMapGen cAux = (HashMapGen) parent.getItemAtPosition(position);
+                //
+                Toast.makeText(
+                        context,
+                        cAux.get(HashMapGen.FABRICANTE),
+                        Toast.LENGTH_SHORT
+                ).show();
+            }
+        });
+
 
         FirebaseUser currentUser = FireBase.getFirebaseAuth().getCurrentUser();
 
@@ -238,6 +297,7 @@ public class TelaLogado extends AppCompatActivity
                 @Override
                 public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
+                    String x = "";
                 }
 
                 @Override
@@ -255,6 +315,88 @@ public class TelaLogado extends AppCompatActivity
 
                 }
             });
+
+
+            if (Globais.tipoUsuario.contains("Tecnico")) {
+
+                FireBase.getFireBasePedido().addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        for (DataSnapshot ds1 : dataSnapshot.getChildren()) {
+                            for (DataSnapshot ds2 : ds1.getChildren()) {
+                                Pedido p = ds2.getValue(Pedido.class);
+
+                                if (p != null) {
+
+                                    HashMapGen item = new HashMapGen();
+
+                                    item.put(HashMapGen.ID, ds2.getKey().toString());
+                                    item.put(HashMapGen.TELEFONE, p.getTelefone().toString());
+                                    item.put(HashMapGen.NOME, p.getNome().toString());
+                                    item.put(HashMapGen.FABRICANTE, p.getFabricante().toString());
+                                    item.put(HashMapGen.DATA, p.getData().toString());
+                                    item.put(HashMapGen.STATUS, p.getStatus().toString());
+
+                                    //
+
+                                    if (p.getStatus().toString().contains("Em atendimento")) {
+                                        pedidos_em_atendimento.add(item);
+                                    } else if (p.getStatus().toString().contains("Atendido")) {
+                                        {
+                                            pedidos_em_atendidas.add(item);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        pedidos.add(item);
+                                    }
+                                }
+                            }
+                        }
+
+
+                        adapter_pedidos = new SimpleAdapter(
+                                context,
+                                pedidos,
+                                R.layout.celula_tecnico,
+                                from_tecnico,
+                                to_tecnico
+                        );
+                        //
+
+                        lv_pedidos.setAdapter(adapter_pedidos);
+
+                        adapter_pedidos_em_atendimento = new SimpleAdapter(
+                                context,
+                                pedidos_em_atendimento,
+                                R.layout.celula_tecnico,
+                                from_tecnico,
+                                to_tecnico
+                        );
+                        //
+
+                        lv_pedidos_em_atendimento.setAdapter(adapter_pedidos_em_atendimento);
+
+
+                        adapter_pedidos_atendidas = new SimpleAdapter(
+                                context,
+                                pedidos_em_atendidas,
+                                R.layout.celula_tecnico,
+                                from_tecnico,
+                                to_tecnico
+                        );
+                        //
+
+                        lv_pedidos_atendidas.setAdapter(adapter_pedidos_atendidas);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
 
 
         } else {
@@ -312,6 +454,7 @@ public class TelaLogado extends AppCompatActivity
             startActivity(intent);
         }
         if (id == R.id.nav_buscarTecnico) {
+
             Intent intent = new Intent(getBaseContext(), TelaPedido.class);
             startActivity(intent);
         } else if (id == R.id.nav_Ajuda) {

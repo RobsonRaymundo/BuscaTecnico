@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.droid.ray.buscatecnico.R;
 import com.droid.ray.buscatecnico.dbase.FireBase;
 import com.droid.ray.buscatecnico.dbase.Usuario;
+import com.droid.ray.buscatecnico.others.Globais;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,10 +38,12 @@ public class TelaInicial extends AppCompatActivity {
                     Usuario getUsuario = dataSnapshot.getValue(Usuario.class);
                     Intent intent = null;
 
+                    Globais.tipoUsuario = getUsuario.getTipo().toString();
+                    Globais.nomeUsuario = getUsuario.getNome().toString();
 
                     if (getUsuario != null && getUsuario.getTela().toString().equals("Registro")) {
                         intent = new Intent(getBaseContext(), TelaLogado.class);
-                        intent.putExtra("tipo", getUsuario.getTipo().toString());
+
                     } else {
                         intent = new Intent(getBaseContext(), TelaRegistro.class);
                     }

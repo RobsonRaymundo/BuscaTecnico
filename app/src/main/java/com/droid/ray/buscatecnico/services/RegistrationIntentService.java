@@ -52,18 +52,20 @@ public class RegistrationIntentService extends IntentService {
     protected void onHandleIntent(Intent intent) {
 
         try {
-            sendRegistrationToServer();
+            String nomeSolicitantePedido = intent.getStringExtra("nomeSolicitantePedido");
+
+            sendRegistrationToServer(nomeSolicitantePedido);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void sendRegistrationToServer() throws Exception {
+    private void sendRegistrationToServer(String nomeSolicitante) throws Exception {
 
         // Prepare JSON containing the GCM message content. What to send and where to send.
         JSONObject jGcmData = new JSONObject();
         JSONObject jData = new JSONObject();
-        jData.put("message", "Novo Pedido");
+        jData.put("message", "Novo pedido de " + nomeSolicitante);
 
      //   token_to = "fFOsuoeDUoI:APA91bGjyN4b0SRhTPW-AKHA2a3_fAH_n-NJ3BTeG-o5IkbMW-44EqokJkTfc0R5QrQaY4_Gd0u6tE1lMTBUBjv_Va_4SCb9Q79YbJGYDaBUDIclDNPOKYjJtlN2zBy5Fv60TWoJ8t9n"; //BuscaTecnico
 //token_to = FirebaseInstanceId.getInstance().getToken();

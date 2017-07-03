@@ -55,10 +55,10 @@
                     android:background="#da8200"
                     android:orientation="vertical">
 
-                    <TextView
+                    <ListView
+                        android:id="@+id/lv_pedidos_em_antendimento"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="This is tab 2" />
+                        android:layout_height="match_parent" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -68,10 +68,10 @@
                     android:background="#5b89ff"
                     android:orientation="vertical">
 
-                    <TextView
+                    <ListView
+                        android:id="@+id/lv_pedidos_antendidas"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="This is tab 3" />
+                        android:layout_height="match_parent" />
                 </LinearLayout>
             </FrameLayout>
         </LinearLayout>
