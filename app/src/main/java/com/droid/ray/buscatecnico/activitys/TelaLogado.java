@@ -112,8 +112,6 @@ public class TelaLogado extends AppCompatActivity
         host.setup();
 
 
-
-
         if (Globais.tipoUsuario.contains("Tecnico")) {
 
             //Tab 1
@@ -163,7 +161,7 @@ public class TelaLogado extends AppCompatActivity
 
                 Toast.makeText(
                         context,
-                            cAux.get(HashMapGen.ID),
+                        cAux.get(HashMapGen.ID),
                         Toast.LENGTH_SHORT
                 ).show();
             }
@@ -176,12 +174,20 @@ public class TelaLogado extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 HashMapGen cAux = (HashMapGen) parent.getItemAtPosition(position);
-                //
+
+                DatabaseReference pedidoRef = FireBase.getFireBasePedido().child(cAux.get(HashMapGen.TELEFONE).toString()).child(cAux.get(HashMapGen.ID).toString());
+
+                Map<String, Object> pedidoUpdates = new HashMap<String, Object>();
+                pedidoUpdates.put(HashMapGen.STATUS, "Atendida");
+
+                pedidoRef.updateChildren(pedidoUpdates);
+
                 Toast.makeText(
                         context,
-                        cAux.get(HashMapGen.FABRICANTE),
+                        cAux.get(HashMapGen.ID),
                         Toast.LENGTH_SHORT
                 ).show();
+
             }
         });
 
@@ -247,57 +253,17 @@ public class TelaLogado extends AppCompatActivity
             FireBase.getFireBasePedido().child(telefone).addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    Pedido getPedido = dataSnapshot.getValue(Pedido.class);
-                    if (getPedido != null) {
+//                    Pedido getPedido = dataSnapshot.getValue(Pedido.class);
 
-                        HashMapGen item = new HashMapGen();
-                        item.put(HashMapGen.FABRICANTE, getPedido.getFabricante().toString());
-                        item.put(HashMapGen.DATA, getPedido.getData().toString());
-                        item.put(HashMapGen.STATUS, getPedido.getStatus().toString());
-
-                        //
-                        pedidos.add(item);
-
-                        adapter_pedidos = new SimpleAdapter(
-                                context,
-                                pedidos,
-                                R.layout.celula,
-                                from,
-                                to
-                        );
-                        //
-
-                        lv_pedidos.setAdapter(adapter_pedidos);
-
-                        /*
-
-                        Pedido cAux = new Pedido();
-                        cAux.setId(getPedido.getId().toString());
-                        cAux.setDefeito(getPedido.getDefeito().toString());
-                        cAux.setStatus(getPedido.getStatus().toString());
-                        cAux.setTelefone(getPedido.getTelefone().toString());
-                        cAux.setObservacao(getPedido.getObservacao().toString());
-                        cAux.setDefeito(fabricante);
-
-                        pedidos.add(cAux);
-
-                        lv_pedidos.setAdapter(
-
-                                new ArrayAdapter<Pedido>(
-                                        context,
-                                        R.layout.simple_list_item_1,
-                                        pedidos
-                                )
-                        );
-                        */
-
-                    }
+//                    AtualizaPedido(getPedido);
                 }
 
                 @Override
                 public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-                    String x = "";
+                    //                  Pedido getPedido = dataSnapshot.getValue(Pedido.class);
+
+                    //                AtualizaPedido(getPedido);
                 }
 
                 @Override
@@ -322,73 +288,21 @@ public class TelaLogado extends AppCompatActivity
                 FireBase.getFireBasePedido().addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
+                        AtualizarPedidosTecnico(dataSnapshot);
 
-                        for (DataSnapshot ds1 : dataSnapshot.getChildren()) {
-                            for (DataSnapshot ds2 : ds1.getChildren()) {
-                                Pedido p = ds2.getValue(Pedido.class);
+                    }
 
-                                if (p != null) {
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
-                                    HashMapGen item = new HashMapGen();
+                    }
+                });
+            } else {
 
-                                    item.put(HashMapGen.ID, ds2.getKey().toString());
-                                    item.put(HashMapGen.TELEFONE, p.getTelefone().toString());
-                                    item.put(HashMapGen.NOME, p.getNome().toString());
-                                    item.put(HashMapGen.FABRICANTE, p.getFabricante().toString());
-                                    item.put(HashMapGen.DATA, p.getData().toString());
-                                    item.put(HashMapGen.STATUS, p.getStatus().toString());
-
-                                    //
-
-                                    if (p.getStatus().toString().contains("Em atendimento")) {
-                                        pedidos_em_atendimento.add(item);
-                                    } else if (p.getStatus().toString().contains("Atendido")) {
-                                        {
-                                            pedidos_em_atendidas.add(item);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        pedidos.add(item);
-                                    }
-                                }
-                            }
-                        }
-
-
-                        adapter_pedidos = new SimpleAdapter(
-                                context,
-                                pedidos,
-                                R.layout.celula_tecnico,
-                                from_tecnico,
-                                to_tecnico
-                        );
-                        //
-
-                        lv_pedidos.setAdapter(adapter_pedidos);
-
-                        adapter_pedidos_em_atendimento = new SimpleAdapter(
-                                context,
-                                pedidos_em_atendimento,
-                                R.layout.celula_tecnico,
-                                from_tecnico,
-                                to_tecnico
-                        );
-                        //
-
-                        lv_pedidos_em_atendimento.setAdapter(adapter_pedidos_em_atendimento);
-
-
-                        adapter_pedidos_atendidas = new SimpleAdapter(
-                                context,
-                                pedidos_em_atendidas,
-                                R.layout.celula_tecnico,
-                                from_tecnico,
-                                to_tecnico
-                        );
-                        //
-
-                        lv_pedidos_atendidas.setAdapter(adapter_pedidos_atendidas);
+                FireBase.getFireBasePedido().child(telefone).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        AtualizarPedidosCliente(dataSnapshot);
                     }
 
                     @Override
@@ -406,6 +320,107 @@ public class TelaLogado extends AppCompatActivity
         }
 
 
+    }
+
+    private void AtualizarPedidosCliente(DataSnapshot dataSnapshot) {
+        pedidos.clear();
+        for (DataSnapshot ds1 : dataSnapshot.getChildren()) {
+            Pedido p = ds1.getValue(Pedido.class);
+            if (p != null) {
+
+                HashMapGen item = new HashMapGen();
+                item.put(HashMapGen.FABRICANTE, p.getFabricante().toString());
+                item.put(HashMapGen.DATA, p.getData().toString());
+                item.put(HashMapGen.STATUS, p.getStatus().toString());
+
+                //
+                pedidos.add(item);
+
+                adapter_pedidos = new SimpleAdapter(
+                        context,
+                        pedidos,
+                        R.layout.celula,
+                        from,
+                        to
+                );
+                //
+
+                lv_pedidos.setAdapter(adapter_pedidos);
+
+            }
+
+        }
+    }
+
+    private void AtualizarPedidosTecnico(DataSnapshot dataSnapshot) {
+        pedidos.clear();
+        pedidos_em_atendimento.clear();
+        pedidos_em_atendidas.clear();
+
+        for (DataSnapshot ds1 : dataSnapshot.getChildren()) {
+            for (DataSnapshot ds2 : ds1.getChildren()) {
+                Pedido p = ds2.getValue(Pedido.class);
+
+                if (p != null) {
+
+                    HashMapGen item = new HashMapGen();
+
+                    item.put(HashMapGen.ID, ds2.getKey().toString());
+                    item.put(HashMapGen.TELEFONE, p.getTelefone().toString());
+                    item.put(HashMapGen.NOME, p.getNome().toString());
+                    item.put(HashMapGen.FABRICANTE, p.getFabricante().toString());
+                    item.put(HashMapGen.DATA, p.getData().toString());
+                    item.put(HashMapGen.STATUS, p.getStatus().toString());
+
+                    //
+
+                    if (p.getStatus().toString().contains("Em atendimento")) {
+                        pedidos_em_atendimento.add(item);
+                    } else if (p.getStatus().toString().contains("Atendida")) {
+                        {
+                            pedidos_em_atendidas.add(item);
+                        }
+                    } else {
+                        pedidos.add(item);
+                    }
+                }
+            }
+        }
+
+
+        adapter_pedidos = new SimpleAdapter(
+                context,
+                pedidos,
+                R.layout.celula_tecnico,
+                from_tecnico,
+                to_tecnico
+        );
+        //
+
+        lv_pedidos.setAdapter(adapter_pedidos);
+
+        adapter_pedidos_em_atendimento = new SimpleAdapter(
+                context,
+                pedidos_em_atendimento,
+                R.layout.celula_tecnico,
+                from_tecnico,
+                to_tecnico
+        );
+        //
+
+        lv_pedidos_em_atendimento.setAdapter(adapter_pedidos_em_atendimento);
+
+
+        adapter_pedidos_atendidas = new SimpleAdapter(
+                context,
+                pedidos_em_atendidas,
+                R.layout.celula_tecnico,
+                from_tecnico,
+                to_tecnico
+        );
+        //
+
+        lv_pedidos_atendidas.setAdapter(adapter_pedidos_atendidas);
     }
 
     @Override
