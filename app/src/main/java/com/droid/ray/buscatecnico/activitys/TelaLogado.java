@@ -42,8 +42,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.droid.ray.buscatecnico.R.id.edtObs;
-
 public class TelaLogado extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -64,8 +62,8 @@ public class TelaLogado extends AppCompatActivity
     private SimpleAdapter adapter_pedidos_atendidas;
     private ArrayList<HashMapGen> pedidos_em_atendidas = new ArrayList<>();
 
-    private String[] from = {HashMapGen.FABRICANTE, HashMapGen.DATA, HashMapGen.STATUS};
-    private int[] to = {R.id.celula_tv_fabricante, R.id.celula_tv_data, R.id.celula_tv_status};
+    private String[] from = {HashMapGen.TECNICO_NOME, HashMapGen.FABRICANTE, HashMapGen.DATA, HashMapGen.STATUS};
+    private int[] to = {R.id.celula_nome_tecnico, R.id.celula_tv_fabricante, R.id.celula_tv_data, R.id.celula_tv_status};
 
     private String[] from_tecnico = {HashMapGen.NOME, HashMapGen.FABRICANTE, HashMapGen.DATA, HashMapGen.STATUS};
     private int[] to_tecnico = {R.id.celula_tecnico_nome, R.id.celula_tecnico_tv_fabricante, R.id.celula_tecnico_tv_data, R.id.celula_tecnico_tv_status};
@@ -156,7 +154,8 @@ public class TelaLogado extends AppCompatActivity
 
                 Map<String, Object> pedidoUpdates = new HashMap<String, Object>();
                 pedidoUpdates.put(HashMapGen.STATUS, "Em atendimento");
-
+                pedidoUpdates.put(HashMapGen.TECNICO_NOME, Globais.nomeUsuario);
+                pedidoUpdates.put(HashMapGen.TECNICO_TELEFONE, Globais.telefoneUsuario);
                 pedidoRef.updateChildren(pedidoUpdates);
 
                 Toast.makeText(
@@ -179,7 +178,6 @@ public class TelaLogado extends AppCompatActivity
 
                 Map<String, Object> pedidoUpdates = new HashMap<String, Object>();
                 pedidoUpdates.put(HashMapGen.STATUS, "Atendida");
-
                 pedidoRef.updateChildren(pedidoUpdates);
 
                 Toast.makeText(
@@ -329,9 +327,11 @@ public class TelaLogado extends AppCompatActivity
             if (p != null) {
 
                 HashMapGen item = new HashMapGen();
+                item.put(HashMapGen.TECNICO_NOME, p.getTecnico_nome().toString());
                 item.put(HashMapGen.FABRICANTE, p.getFabricante().toString());
                 item.put(HashMapGen.DATA, p.getData().toString());
                 item.put(HashMapGen.STATUS, p.getStatus().toString());
+
 
                 //
                 pedidos.add(item);

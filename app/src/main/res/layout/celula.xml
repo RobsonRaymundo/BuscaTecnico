@@ -9,10 +9,24 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="15dp"
-        android:background="@drawable/side_nav_bar"
+        android:layout_height="20dp"
         android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/celula_nome_tecnico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tecnico: Telmo Marins"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/side_nav_bar"
+
+        android:orientation="horizontal"
+        android:padding="15dp">
 
         <TextView
             android:id="@+id/celula_tv_fabricante"
@@ -20,8 +34,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="17sp"
-            android:text="Gradiente" />
+            android:text="Gradiente"
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/celula_tv_data"
@@ -29,8 +43,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="15sp"
-            android:text="23/06/2017" />
+            android:text="23/06/2017"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/celula_tv_status"
@@ -38,8 +52,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="15sp"
-            android:text="Em aberto" />
+            android:text="Em aberto"
+            android:textSize="15sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -47,11 +61,11 @@
         android:layout_height="20dp"
         android:orientation="horizontal">
 
-    <View
-        android:background="#000000"
-        android:gravity="center"
-        android:layout_width = "match_parent"
-        android:layout_height="2dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="#000000"
+            android:gravity="center" />
 
     </LinearLayout>
 

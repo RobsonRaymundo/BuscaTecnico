@@ -12,7 +12,8 @@ public class HashMapGen extends HashMap<String, String> {
     public static final String DEFEITO = "defeito";
     public static final String OBSERVACAO = "observacao";
     public static final String STATUS = "status";
-
+    public static final String TECNICO_NOME = "tecnico_nome";
+    public static final String TECNICO_TELEFONE = "tecnico_telefone";
 
     @Override
     public String toString() {

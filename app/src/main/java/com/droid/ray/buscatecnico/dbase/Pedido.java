@@ -19,7 +19,10 @@ public class Pedido {
     private String observacao;
     private String status;
     private String data;
-    private String tecnico;
+    private Double latitude;
+    private Double longitude;
+    private String tecnico_nome;
+    private String tecnico_telefone;
 
     public Pedido() {
     }
@@ -40,7 +43,10 @@ public class Pedido {
         hashMap.put("observacao", getObservacao());
         hashMap.put("status", getStatus());
         hashMap.put("data", getData());
-        hashMap.put("tecnico", getTecnico());
+        hashMap.put("latitude", getLatitude());
+        hashMap.put("longitude", getLongitude());
+        hashMap.put("tecnico_nome", getTecnico_nome());
+        hashMap.put("tecnico_telefone", getTecnico_telefone());
         return hashMap;
     }
 
@@ -71,14 +77,6 @@ public class Pedido {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public String getTecnico() {
-        return tecnico;
-    }
-
-    public void setTecnico(String tecnico) {
-        this.tecnico = tecnico;
     }
 
     public String getFabricante() {
@@ -121,6 +119,36 @@ public class Pedido {
         this.data = data;
     }
 
+    public Double getLatitude() {
+        return latitude;
+    }
 
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getTecnico_nome() {
+        return tecnico_nome;
+    }
+
+    public void setTecnico_nome(String tecnico_nome) {
+        this.tecnico_nome = tecnico_nome;
+    }
+
+    public String getTecnico_telefone() {
+        return tecnico_telefone;
+    }
+
+    public void setTecnico_telefone(String tecnico_telefone) {
+        this.tecnico_telefone = tecnico_telefone;
+    }
 }
 

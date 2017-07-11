@@ -8,6 +8,7 @@ public class Globais {
 
     public static String tipoUsuario;
     public static String nomeUsuario;
+    public static String telefoneUsuario;
 
 
 

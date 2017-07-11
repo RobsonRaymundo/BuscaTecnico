@@ -12,10 +12,10 @@
         android:textSize="23sp" />
 
     <Spinner
-        android:id="@+id/sp_fabricante"
+        android:id="@+id/pedido_sp_fabricante"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"/>
+        android:layout_marginBottom="40dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -24,10 +24,33 @@
         android:textSize="23sp" />
 
     <Spinner
-        android:id="@+id/sp_defeito"
+        android:id="@+id/pedido_sp_defeito"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"/>
+        android:layout_marginBottom="40dp" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Região"
+        android:textSize="23sp" />
+
+
+    <Button
+        android:id="@+id/pedido_btn_meu_local"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Busque meu local"
+        android:textSize="19sp" />
+
+    <TextView
+        android:id="@+id/pedido_tv_regiao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:hint="Nenhum lugar informado"
+        android:textSize="17sp" />
 
 
     <TextView
@@ -37,21 +60,21 @@
         android:textSize="23sp" />
 
     <EditText
-        android:id="@+id/edtObs"
+        android:id="@+id/pedido_edt_Obs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
         android:ems="10"
         android:hint="Máximo 140 caracteres"
-        android:maxLength="140"
-        android:layout_marginBottom="40dp"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:maxLength="140" />
 
     <Button
-        android:id="@+id/btnAvancar"
+        android:id="@+id/pedido_btn_avancar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Avançar"
-        android:textSize="19sp"/>
+        android:textSize="19sp" />
 
 </LinearLayout>
 
