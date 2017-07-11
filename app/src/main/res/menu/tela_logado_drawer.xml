@@ -4,17 +4,17 @@
     <group android:checkableBehavior="single"  >
         <item
             android:id="@+id/nav_meusDados"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_menu_manage"
             android:title="Meus dados" />
         <item
-            android:id="@+id/nav_buscarTecnico"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Buscar técnico" />
+            android:id="@+id/nav_Compartilhar"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Compartilhar" />
 
         <item
-            android:id="@+id/nav_Ajuda"
-            android:icon="@drawable/ic_menu_send"
-            android:title="Ajuda" />
+            android:id="@+id/nav_Sobre"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Sobre" />
     </group>
 
 </menu>

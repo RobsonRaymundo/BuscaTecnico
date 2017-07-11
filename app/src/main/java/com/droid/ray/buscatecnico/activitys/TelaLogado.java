@@ -468,11 +468,16 @@ public class TelaLogado extends AppCompatActivity
             Intent intent = new Intent(getBaseContext(), MeusDados.class);
             startActivity(intent);
         }
-        if (id == R.id.nav_buscarTecnico) {
+        if (id == R.id.nav_Compartilhar) {
 
-            Intent intent = new Intent(getBaseContext(), TelaPedido.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_Ajuda) {
+            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            String shareBody = "Compartilhe com seus amigos esse ótimo app de serviços";
+            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "BuscaTecnico");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+            startActivity(Intent.createChooser(sharingIntent, "Compartilhar via"));
+
+        } else if (id == R.id.nav_Sobre) {
 
         }
 
