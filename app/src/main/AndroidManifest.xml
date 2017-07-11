@@ -12,28 +12,41 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
+        android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".activitys.TelaInicial">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activitys.ListarTvs">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activitys.ListarTipoProblema">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+        <activity
+            android:name=".activitys.TelaRegistro"/>
 
-        <service
-            android:name=".services.RegistrationIntentService"
-            android:exported="false" />
+        <activity
+            android:name=".activitys.TelaPedido"/>
+
+        <activity
+            android:name=".activitys.TelaLogado"/>
+
+        <activity
+            android:name=".activitys.MeusDados"/>
+
+        <!--
+                <activity android:name=".activitys.ListarTvs">
+                    <intent-filter>
+                        <category android:name="android.intent.category.DEFAULT" />
+                    </intent-filter>
+                </activity>
+                <activity android:name=".activitys.ListarTipoProblema">
+                    <intent-filter>
+                        <category android:name="android.intent.category.DEFAULT" />
+                    </intent-filter>
+                </activity>
+
+                <service
+                    android:name=".services.RegistrationIntentService"
+                    android:exported="false" />
+        -->
 
         <!-- [START firebase_service] -->
         <service android:name=".services.MyFirebaseMessagingService">
@@ -49,12 +62,7 @@
             </intent-filter>
         </service>
         <!-- [END firebase_iid_service] -->
-        <activity android:name=".activitys.TelaRegistro" />
-        <activity android:name=".activitys.TelaPedido" />
-        <activity
-            android:name=".activitys.TelaLogado"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activitys.MeusDados" />
+
     </application>
 
 </manifest>
