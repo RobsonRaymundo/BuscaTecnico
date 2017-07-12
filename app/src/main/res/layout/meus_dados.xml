@@ -2,7 +2,8 @@
 <ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
 
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="15dp">
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:hint="Nome completo"
-        android:textSize="21sp"
+        android:textSize="19sp"
         android:maxLength="100" />
 
     <EditText
@@ -38,7 +39,7 @@
         android:layout_marginBottom="20dp"
         android:inputType="textEmailAddress"
         android:hint="E-Mail"
-        android:textSize="21sp"
+        android:textSize="19sp"
         android:maxLength="50" />
 
     <EditText
@@ -48,7 +49,7 @@
         android:layout_marginBottom="20dp"
         android:inputType=""
         android:hint="CPF ou CNPJ"
-        android:textSize="21sp"
+        android:textSize="19sp"
         android:maxLength="14" />
 
     <EditText
@@ -57,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:hint="CEP"
-        android:textSize="21sp"
+        android:textSize="19sp"
         android:maxLength="9" />
 
     <EditText
@@ -66,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:hint="Titulo anúncio"
-        android:textSize="21sp"
+        android:textSize="19sp"
         android:maxLength="30" />
 
     <EditText
@@ -75,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:hint="Descrição anúncio"
-        android:textSize="21sp"
+        android:textSize="19sp"
         android:maxLength="140"
         android:inputType="textMultiLine"/>
 
@@ -83,9 +84,10 @@
         android:id="@+id/btnAvancar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:text="Avançar"
-        android:textSize="19sp"/>
+        android:background="@color/colorPrimary"
+        android:textColor="@color/color_white"
+        android:text="SALVAR"
+        android:textSize="18sp"/>
 
     </LinearLayout>
 

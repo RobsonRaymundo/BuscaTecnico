@@ -1,32 +1,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/side_nav_bar"
-    android:paddingTop="180dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingTop="180dp">
 
-<!-- The primary full-screen view. This can be replaced with whatever view
-         is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc. -->
+    <!-- The primary full-screen view. This can be replaced with whatever view
+             is needed to present your content, e.g. VideoView, SurfaceView,
+             TextureView, etc. -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:keepScreenOn="true"
+        android:paddingBottom="50dp"
         android:text="B U S C A"
         android:textAlignment="center"
-        android:textColor="@color/color_white"
+        android:textColor="@color/colorPrimary"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:paddingBottom="50dp"/>
+        android:textStyle="bold" />
 
     <TextView
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:keepScreenOn="true"
-        android:textAlignment="center"
         android:text="T É C N I C O"
-        android:textColor="@color/color_white"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         android:textStyle="bold" />
 

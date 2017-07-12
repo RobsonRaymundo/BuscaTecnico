@@ -2,15 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/side_nav_bar"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="15dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Fabricante"
-        android:textSize="23sp" />
+        android:textSize="19sp" />
 
     <Spinner
         android:id="@+id/pedido_sp_fabricante"
@@ -22,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Defeito"
-        android:textSize="23sp" />
+        android:textSize="19sp" />
 
     <Spinner
         android:id="@+id/pedido_sp_defeito"
@@ -35,13 +34,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Região"
-        android:textSize="23sp" />
+        android:textSize="19sp" />
 
 
     <Button
         android:id="@+id/pedido_btn_meu_local"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/color_white"
         android:text="Busque meu local"
         android:textSize="19sp" />
 
@@ -58,7 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Observação"
-        android:textSize="23sp" />
+        android:textSize="19sp" />
 
     <EditText
         android:id="@+id/pedido_edt_Obs"
@@ -74,8 +75,10 @@
         android:id="@+id/pedido_btn_avancar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Avançar"
-        android:textSize="19sp" />
+        android:background="@color/colorPrimary"
+        android:textColor="@color/color_white"
+        android:text="FINALIZAR"
+        android:textSize="18sp" />
 
 </LinearLayout>
 
