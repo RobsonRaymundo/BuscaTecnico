@@ -135,6 +135,7 @@ public class TelaLogado extends AppCompatActivity
             spec.setContent(R.id.tab1);
             spec.setIndicator("Minhas solicitações");
             host.addTab(spec);
+            
 
             LLtab2.setVisibility(View.INVISIBLE);
             LLtab3.setVisibility(View.INVISIBLE);
