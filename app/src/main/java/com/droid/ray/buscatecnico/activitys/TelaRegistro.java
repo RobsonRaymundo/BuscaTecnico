@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.droid.ray.buscatecnico.R;
 import com.droid.ray.buscatecnico.dbase.FireBase;
 import com.droid.ray.buscatecnico.dbase.Usuario;
+import com.droid.ray.buscatecnico.others.Globais;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -82,7 +83,7 @@ public class TelaRegistro extends AppCompatActivity {
         btnAvancar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!validateTipoUsuario() || !validatePhoneNumber() ) {
+                if (!validateTipoUsuario() || !validatePhoneNumber()) {
                     return;
                 }
 
@@ -91,7 +92,7 @@ public class TelaRegistro extends AppCompatActivity {
 
                 String telefone = edtTelefone.getText().toString();
                 txtTituloSMS.setText("Aguardando SMS para " + telefone);
-                startPhoneNumberVerification (telefone);
+                startPhoneNumberVerification(telefone);
 
             }
         });
@@ -187,24 +188,24 @@ public class TelaRegistro extends AppCompatActivity {
                             usuario.setId(user.getUid());
                             usuario.setTelefone(user.getPhoneNumber().toString());
                             usuario.setNome(edtNome.getText().toString());
+
                             Intent mIntent;
-                            if(radCliente.isChecked())
-                            {
+                            if (radCliente.isChecked()) {
                                 usuario.setTipo("Cliente");
                                 mIntent = new Intent(context, TelaPedido.class);
 
-                            }
-                            else
-                            {
+                            } else {
+                                FirebaseMessaging.getInstance().subscribeToTopic("news");
                                 usuario.setTipo("Tecnico");
                                 mIntent = new Intent(context, MeusDados.class);
-                                FirebaseMessaging.getInstance().subscribeToTopic("news");
-
+                                mIntent.putExtra("tela", "TelaRegistro");
                             }
+
+                            Globais.nomeUsuario = edtNome.getText().toString();
+                            Globais.tipoUsuario = usuario.getTipo().toString();
+
                             usuario.setTela("Registro");
                             usuario.Salvar();
-
-
                             startActivity(mIntent);
                             finish();
 
@@ -243,17 +244,13 @@ public class TelaRegistro extends AppCompatActivity {
         return true;
     }
 
-    private boolean validateTipoUsuario()
-    {
+    private boolean validateTipoUsuario() {
 
-        if (groUsuario.getCheckedRadioButtonId() == -1)
-        {
+        if (groUsuario.getCheckedRadioButtonId() == -1) {
             radCliente.setError("Selecione uma das opções"); // no radio buttons are checked
             radTecnico.setError("Selecione uma das opções"); // no radio buttons are checked
             return false;
-        }
-        else
-        {
+        } else {
             // one of the radio buttons is checked
             return true;
         }

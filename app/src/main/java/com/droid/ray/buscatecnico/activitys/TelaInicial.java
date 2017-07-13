@@ -48,6 +48,8 @@ public class TelaInicial extends AppCompatActivity {
                     } else {
                         intent = new Intent(getBaseContext(), TelaRegistro.class);
                     }
+
+
                     startActivity(intent);
                     finish();
                 }

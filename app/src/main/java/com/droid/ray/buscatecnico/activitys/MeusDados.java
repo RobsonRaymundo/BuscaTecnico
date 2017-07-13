@@ -10,10 +10,12 @@ import android.widget.EditText;
 import com.droid.ray.buscatecnico.R;
 import com.droid.ray.buscatecnico.dbase.FireBase;
 import com.droid.ray.buscatecnico.dbase.Usuario;
+import com.droid.ray.buscatecnico.others.Globais;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MeusDados extends AppCompatActivity {
 
@@ -27,11 +29,15 @@ public class MeusDados extends AppCompatActivity {
     private EditText edtDescricaoAnuncio;
     private Button btnAvancar;
     private Usuario dadosUsuario;
+    private String telaAnterior;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        final String telaAnterior = getIntent().getStringExtra("tela");
+
         setContentView(R.layout.meus_dados);
 
         edtNome = (EditText) findViewById(R.id.edtNome);
@@ -56,12 +62,18 @@ public class MeusDados extends AppCompatActivity {
                     dadosUsuario.setTituloAnuncio(edtTituloAnuncio.getText().toString());
                     dadosUsuario.setDescricaoAnuncio(edtDescricaoAnuncio.getText().toString());
                     dadosUsuario.Salvar();
-                    finish();
                 }
+
+                if (telaAnterior != null && telaAnterior.contains("TelaRegistro")) {
+                    Intent mIntent = new Intent(getBaseContext(), TelaLogado.class);
+                    startActivity(mIntent);
+                }
+                finish();
             }
         });
 
         FirebaseUser currentUser = FireBase.getFirebaseAuth().getCurrentUser();
+
         String telefone = "";
         if (currentUser != null) {
             telefone = currentUser.getPhoneNumber().toString();

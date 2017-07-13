@@ -43,3 +43,5 @@ captures/
 
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
+app/src/main/java/com/droid/ray/buscatecnico/activitys/TelaLogado.java
+app/src/main/java/com/droid/ray/buscatecnico/activitys/TelaLogado.java
