@@ -1,9 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
-    android:layout_marginTop="20dp"
-    android:orientation="vertical">
+    android:layout_marginTop="40dp"
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <LinearLayout
         android:id="@+id/layInicial"
@@ -15,16 +15,17 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="26sp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="50dp"
+            android:text="Seja bem-vindo"
             android:textAlignment="center"
-            android:text="Seja bem-vindo"/>
+            android:textColor="@color/colorPrimary"
+            android:textSize="32sp" />
 
         <RadioGroup
             android:id="@+id/groUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="30dp"
             android:orientation="vertical">
 
             <RadioButton
@@ -32,14 +33,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Procuro um Técnico"
-                android:textSize="19dp" />
+                android:layout_marginBottom="10dp"
+                android:textSize="19sp" />
 
             <RadioButton
                 android:id="@+id/radTecnico"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Cadastrar meus serviços"
-                android:textSize="19dp" />
+                android:textSize="19sp" />
         </RadioGroup>
 
 
@@ -49,34 +51,27 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:hint="Nome completo"
-            android:textSize="21sp"
-            android:maxLength="100" />
+            android:maxLength="100"
+            android:textSize="19sp" />
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/edtTelefone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginBottom="50dp"
+            android:hint="(DDD) Número do celular"
+            android:inputType="phone"
+            android:maxLength="12"
+            android:textSize="19sp" />
 
-            <EditText
-                android:id="@+id/edtTelefone"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:layout_marginBottom="50dp"
-                android:hint="(DDD) Número do celular"
-
-                android:inputType="phone"
-                android:maxLength="12"
-                android:textSize="19sp" />
-
-            <Button
-                android:id="@+id/btnAvancar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Avançar" />
-        </LinearLayout>
-
+        <Button
+            android:id="@+id/btnAvancar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="Avançar"
+            android:textColor="@color/color_white"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
@@ -93,32 +88,26 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:text=" "
-            android:textSize="18sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
+            android:textSize="19sp" />
 
         <EditText
             android:id="@+id/edtSMS"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="5"
             android:layout_marginBottom="50dp"
             android:hint="Digite o código de 6 digitos"
             android:inputType="phone"
-            android:maxLength="6" />
+            android:maxLength="6"
+            android:textSize="19sp" />
 
         <Button
             android:id="@+id/btnEnviar"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="Avançar" />
-
-            </LinearLayout>
+            android:background="@color/colorPrimary"
+            android:text="Enviar"
+            android:textColor="@color/color_white"
+            android:textSize="16sp" />
 
 
     </LinearLayout>

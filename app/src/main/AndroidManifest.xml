@@ -19,28 +19,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".activitys.TelaLogado" />
+
         <activity android:name=".activitys.TelaRegistro" />
 
         <activity android:name=".activitys.TelaPedido" />
 
-        <activity android:name=".activitys.TelaLogado" />
+        <activity
+            android:name=".activitys.MeusDados"
+            android:theme="@style/AppTheme" />
 
-        <activity android:name=".activitys.MeusDados" />
 
-        <!--
-                <activity android:name=".activitys.ListarTvs">
-                    <intent-filter>
-                        <category android:name="android.intent.category.DEFAULT" />
-                    </intent-filter>
-                </activity>
-                <activity android:name=".activitys.ListarTipoProblema">
-                    <intent-filter>
-                        <category android:name="android.intent.category.DEFAULT" />
-                    </intent-filter>
-                </activity>
-        -->
-
-        <!-- [START firebase_service] -->
         <service android:name=".services.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -54,7 +44,6 @@
         <service
             android:name=".services.RegistrationIntentService"
             android:exported="false"></service>
-        <!-- [END firebase_service] -->
 
     </application>
 

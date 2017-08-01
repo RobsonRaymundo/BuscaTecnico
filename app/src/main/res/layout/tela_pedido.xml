@@ -42,9 +42,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:textColor="@color/color_white"
         android:text="Busque meu local"
-        android:textSize="19sp" />
+        android:textColor="@color/color_white"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/pedido_tv_regiao"
@@ -76,9 +76,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:textColor="@color/color_white"
         android:text="FINALIZAR"
-        android:textSize="18sp" />
+        android:textColor="@color/color_white"
+        android:textSize="16sp" />
 
 </LinearLayout>
 

@@ -116,6 +116,7 @@ public class TelaLogado extends AppCompatActivity
             TabHost.TabSpec spec = host.newTabSpec("tab1");
             spec.setContent(R.id.tab1);
             spec.setIndicator("Todas solicitações");
+
             host.addTab(spec);
 
             //Tab 2

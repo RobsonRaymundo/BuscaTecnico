@@ -92,6 +92,7 @@ public class TelaRegistro extends AppCompatActivity {
 
                 String telefone = edtTelefone.getText().toString();
                 txtTituloSMS.setText("Aguardando SMS para " + telefone);
+                edtSms.setFocusable(true);
                 startPhoneNumberVerification(telefone);
 
             }
